@@ -979,6 +979,291 @@ ul {
   .product-card__specs { grid-template-columns: 1fr 1fr; }
 }
 
+/* ========================================
+   NAVBAR CATEGORY BADGE
+   ======================================== */
+.navbar__category-badge {
+  display: none;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-orange));
+  color: var(--color-white);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .navbar__category-badge {
+    display: inline-block;
+  }
+}
+
+/* ========================================
+   PRODUCT SECTION DIVIDERS
+   ======================================== */
+.products__section-divider {
+  text-align: center;
+  margin: 32px 0 28px;
+  padding-bottom: 16px;
+  position: relative;
+}
+
+.products__section-divider::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-orange));
+  border-radius: 4px;
+}
+
+.products__section-divider--electric::after {
+  background: linear-gradient(135deg, #0984e3, #00b894);
+}
+
+.products__section-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-dark);
+  letter-spacing: -0.5px;
+}
+
+.products__section-title--electric {
+  color: var(--color-accent-blue);
+}
+
+@media (min-width: 768px) {
+  .products__section-title { font-size: 1.8rem; }
+}
+
+/* ========================================
+   PRODUCT VIDEO
+   ======================================== */
+.product-card__video {
+  padding: 4px;
+  background: var(--color-bg);
+}
+
+.product-card__video-player {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  display: block;
+  background: #000;
+}
+
+/* Wrapper responsive para video de YouTube */
+.video-responsive {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Proporción exacta 16:9 */
+  height: 0;
+  overflow: hidden;
+  margin-top: 1rem;
+  border-radius: var(--radius-md, 12px);
+  background-color: #000;
+  box-shadow: var(--shadow-md, 0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.video-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: inherit;
+}
+
+/* ========================================
+   FOOTER DEVELOPER CREDITS
+   ======================================== */
+.footer__developer {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.5px;
+}
+
+.footer__developer-link {
+  color: var(--color-orange);
+  font-weight: 600;
+  transition: var(--transition);
+  text-decoration: none;
+  position: relative;
+}
+
+.footer__developer-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1.5px;
+  background: var(--color-orange);
+  transition: width 0.3s ease;
+}
+
+.footer__developer-link:hover {
+  color: var(--color-accent);
+}
+
+.footer__developer-link:hover::after {
+  width: 100%;
+  background: var(--color-accent);
+}
+
+/* ========================================
+   LIGHTBOX MODAL
+   ======================================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.lightbox__content {
+  position: relative;
+  z-index: 2;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox__image {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 60px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+
+.lightbox.active .lightbox__image {
+  animation: lightboxZoomIn 0.35s ease-out;
+}
+
+@keyframes lightboxZoomIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  z-index: 3;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--color-white);
+  font-size: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  backdrop-filter: blur(4px);
+  line-height: 1;
+}
+
+.lightbox__close:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: rotate(90deg);
+}
+
+.lightbox__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--color-white);
+  font-size: 1.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  backdrop-filter: blur(4px);
+}
+
+.lightbox__arrow:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.lightbox__arrow--left { left: 16px; }
+.lightbox__arrow--right { right: 16px; }
+
+.lightbox__counter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: rgba(0,0,0,0.4);
+  padding: 6px 18px;
+  border-radius: 50px;
+  letter-spacing: 2px;
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width: 767px) {
+  .lightbox__arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2rem;
+  }
+  .lightbox__arrow--left { left: 8px; }
+  .lightbox__arrow--right { right: 8px; }
+  .lightbox__close {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.6rem;
+  }
+}
+
 /* ---------- Scroll Reveal Animation ---------- */
 .reveal {
   opacity: 0;

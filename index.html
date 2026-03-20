@@ -5,12 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Motos Kids Perú - Venta de motocicletas para niños. Motocross 49cc y Moto Eléctrica KIDS deportiva. Envíos a todo el Perú. Compra segura por WhatsApp.">
-  <meta name="keywords" content="motos para niños, motocross 49cc, moto eléctrica niños, Perú, motos infantiles">
-  <title>Motos Kids Perú | Motos para Niños - Motocross 49cc y Eléctrica KIDS</title>
+    content="Importaciones Franco - Venta de motocicletas para niños. Motocross 49cc y Moto Eléctrica KIDS deportiva. Envíos a todo el Perú. Compra segura por WhatsApp.">
+  <meta name="keywords" content="motos para niños, motocross 49cc, moto eléctrica niños, Perú, motos infantiles, Importaciones Franco">
+  <title>Importaciones Franco | Motos para Niños - Motocross 49cc y Eléctrica KIDS</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏍️</text></svg>">
+  <link rel="icon" href="favicon.ico">
 </head>
 
 <body>
@@ -20,8 +19,9 @@
     <div class="container">
       <a href="#" class="navbar__logo">
         <span class="navbar__logo-icon">🏍️</span>
-        Motos <span>Kids Perú</span>
+        Importaciones <span>Franco</span>
       </a>
+      <span class="navbar__category-badge">Moto Kids Perú</span>
       <div class="navbar__links" id="navLinks">
         <a href="#motocross">Motocross 49cc</a>
         <a href="#electrica">Eléctrica KIDS</a>
@@ -101,6 +101,11 @@
           premium a precios increíbles.</p>
       </div>
 
+      <!-- ====== SECTION: MOTOS A GASOLINA ====== -->
+      <div class="products__section-divider">
+        <h2 class="products__section-title">⛽ Motos a Gasolina</h2>
+      </div>
+
       <!-- ====== PRODUCT 1: MOTOCROSS 49CC ====== -->
       <article class="product-card reveal" id="motocross">
         <!-- Ribbon -->
@@ -127,6 +132,13 @@
             <img src="img/motocross/motocross-naranja.jpg.jpeg" alt="Motocross 49cc - Color naranja"
               class="product-card__thumb" loading="lazy">
           </div>
+
+          <!-- Product Video -->
+          <div class="product-card__video">
+            <div class="video-responsive">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/s8DGtPUNJNo?si=sntT7IfHxRH3uJOx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
         </div>
 
         <!-- Body -->
@@ -140,7 +152,7 @@
 
           <!-- Price -->
           <div class="product-card__price-block">
-            <span class="product-card__price">S/ 899</span>
+            <span class="product-card__price">S/ 949</span>
             <span class="product-card__price-label">Precio de lanzamiento</span>
           </div>
 
@@ -235,6 +247,11 @@
           </p>
         </div>
       </article>
+
+      <!-- ====== SECTION: MOTOS ELÉCTRICAS ====== -->
+      <div class="products__section-divider products__section-divider--electric">
+        <h2 class="products__section-title products__section-title--electric">⚡ Motos Eléctricas</h2>
+      </div>
 
       <!-- ====== PRODUCT 2: MOTO ELÉCTRICA KIDS ====== -->
       <article class="product-card reveal" id="electrica">
@@ -417,12 +434,15 @@
   <!-- ==================== FOOTER ==================== -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__brand">🏍️ Motos <span>Kids Perú</span></div>
+      <div class="footer__brand">🏍️ Importaciones <span>Franco</span></div>
       <p class="footer__info">Venta de motocicletas infantiles de calidad</p>
       <div class="footer__shipping">
         🚚 Envíos a todo el país — Despacho inmediato
       </div>
-      <p class="footer__copy">© 2026 Motos Kids Perú. Todos los derechos reservados.</p>
+      <p class="footer__copy">© 2026 Importaciones Franco. Todos los derechos reservados.</p>
+      <div class="footer__developer">
+        Desarrollado por <a href="#" class="footer__developer-link">Jonathan Gutierrez</a>
+      </div>
     </div>
   </footer>
 
@@ -436,8 +456,20 @@
   </a>
 
   <!-- ==================== SCRIPTS ==================== -->
+  <!-- ==================== LIGHTBOX MODAL ==================== -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox__overlay"></div>
+    <button class="lightbox__close" id="lightboxClose" aria-label="Cerrar">&times;</button>
+    <button class="lightbox__arrow lightbox__arrow--left" id="lightboxPrev" aria-label="Anterior">&#10094;</button>
+    <button class="lightbox__arrow lightbox__arrow--right" id="lightboxNext" aria-label="Siguiente">&#10095;</button>
+    <div class="lightbox__content">
+      <img class="lightbox__image" id="lightboxImage" src="" alt="">
+    </div>
+    <div class="lightbox__counter" id="lightboxCounter"></div>
+  </div>
+
   <script>
-    // Mobile nav toggle
+    // ========== Mobile nav toggle ==========
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
 
@@ -445,16 +477,14 @@
       navLinks.classList.toggle('active');
     });
 
-    // Close nav on link click (mobile)
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
       });
     });
 
-    // Scroll reveal animation
+    // ========== Scroll reveal ==========
     const revealElements = document.querySelectorAll('.reveal');
-
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -463,10 +493,9 @@
         }
       });
     }, { threshold: 0.1 });
-
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // Thumbnail click → swap main image
+    // ========== Thumbnail click → swap main image ==========
     document.querySelectorAll('.product-card__thumb').forEach(thumb => {
       thumb.addEventListener('click', function () {
         const gallery = this.closest('.product-card__gallery');
@@ -480,7 +509,7 @@
       });
     });
 
-    // Navbar background on scroll
+    // ========== Navbar scroll shadow ==========
     window.addEventListener('scroll', () => {
       const navbar = document.getElementById('navbar');
       if (window.scrollY > 50) {
@@ -489,6 +518,107 @@
         navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
       }
     });
+
+    // ========== LIGHTBOX GALLERY ==========
+    (function () {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const lightboxCounter = document.getElementById('lightboxCounter');
+      const btnClose = document.getElementById('lightboxClose');
+      const btnPrev = document.getElementById('lightboxPrev');
+      const btnNext = document.getElementById('lightboxNext');
+
+      let currentImages = [];
+      let currentIndex = 0;
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      // Collect clickable images per product card
+      function getCardImages(card) {
+        const imgs = [];
+        card.querySelectorAll('.product-card__main-image, .product-card__thumb, .product-card__detail-img').forEach(img => {
+          imgs.push({ src: img.src, alt: img.alt });
+        });
+        return imgs;
+      }
+
+      function openLightbox(images, index) {
+        currentImages = images;
+        currentIndex = index;
+        showImage();
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      function showImage() {
+        lightboxImage.src = currentImages[currentIndex].src;
+        lightboxImage.alt = currentImages[currentIndex].alt;
+        lightboxCounter.textContent = (currentIndex + 1) + ' / ' + currentImages.length;
+      }
+
+      function nextImage() {
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        showImage();
+      }
+
+      function prevImage() {
+        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+        showImage();
+      }
+
+      // Attach click to all product images
+      document.querySelectorAll('.product-card').forEach(card => {
+        const clickableImgs = card.querySelectorAll('.product-card__main-image, .product-card__thumb, .product-card__detail-img');
+        clickableImgs.forEach((img, i) => {
+          img.style.cursor = 'zoom-in';
+          img.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const images = getCardImages(card);
+            // find index matching this img src
+            let idx = images.findIndex(item => item.src === img.src);
+            if (idx === -1) idx = 0;
+            openLightbox(images, idx);
+          });
+        });
+      });
+
+      // Controls
+      btnClose.addEventListener('click', closeLightbox);
+      btnPrev.addEventListener('click', prevImage);
+      btnNext.addEventListener('click', nextImage);
+
+      // Click overlay to close
+      lightbox.querySelector('.lightbox__overlay').addEventListener('click', closeLightbox);
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
+      });
+
+      // Touch / swipe support
+      lightbox.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      lightbox.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) nextImage();
+          else prevImage();
+        }
+      }, { passive: true });
+    })();
   </script>
 
 </body>
