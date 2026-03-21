@@ -805,6 +805,39 @@ ul {
   margin-bottom: 6px;
 }
 
+.footer__contact-info {
+  margin: 12px 0 4px;
+}
+
+.footer__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.75);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: var(--transition);
+}
+
+.footer__email:hover {
+  color: var(--color-white);
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255,255,255,0.08);
+}
+
+.footer__email-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
 .footer__shipping {
   display: inline-flex;
   align-items: center;
